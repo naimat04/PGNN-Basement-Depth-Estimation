@@ -6,7 +6,7 @@ import math
 def density_contrast(z, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, const=CONST):
     """
     New density contrast function (kg/m^3).
-    z : depth (m)
+    z : depth (km)
     """
     return (const + r0 * np.exp(-lambda_ * (z / 1000.0))) #* 1000.0
 
@@ -14,7 +14,7 @@ def density_contrast(z, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, const=CONST):
 def FW_Granser(z,nx, ny, dx, dy, n, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, const=CONST):
     """Forward gravity model using new Δρ(z) formulation"""
     z0_val = (np.max(z) - np.min(z)) / 2.0
-    nx, ny = z.shape[1], z.shape[0]
+    # nx, ny = z.shape[1], z.shape[0]
     nx0_orig, ny0_orig = nx, ny
 
     # First extension
