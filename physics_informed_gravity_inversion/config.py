@@ -5,3 +5,4 @@ DEFAULT_LAMBDA = 0.5771  # decay parameter
 DEFAULT_DX = 1 # 550.0  # grid spacing in x (kilometers)
 DEFAULT_DY = 1 # 550.0  # grid spacing in y (kilometers)
 DEFAULT_N = 6  # number of terms in series expansion
+CONST  = -0.38 # constant density value
