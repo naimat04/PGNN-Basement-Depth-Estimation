@@ -11,7 +11,7 @@ def density_contrast(z, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, const=CONST):
     return (const + r0 * np.exp(-lambda_ * (z / 1000.0))) #* 1000.0
 
 
-def FW_Granser(z,nx, ny, dx, dy, n, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, const=CONST):
+def FW_Granser(z, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, nx, ny, dx, dy, n, const=CONST):
     """Forward gravity model using new Δρ(z) formulation"""
     z0_val = (np.max(z) - np.min(z)) / 2.0
     # nx, ny = z.shape[1], z.shape[0]
@@ -101,3 +101,29 @@ def FW_Granser(z,nx, ny, dx, dy, n, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, const
     g = g1_cropped + const_term + 1e5
 
     return g
+
+def calculate_gravity_field(depth_map, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA,
+                          dx=DEFAULT_DX, dy=DEFAULT_DY, n=DEFAULT_N, const=CONST):
+    """
+    TensorFlow-compatible wrapper for FW_Granser that handles batches
+    Args:
+        depth_map: tensor of shape (batch_size, height, width, 1)
+    Returns:
+        gravity_field: tensor of shape (batch_size, height, width, 1)
+    """
+    # Get shape information
+    batch_size = tf.shape(depth_map)[0]
+    nx = depth_map.shape[2]
+    ny = depth_map.shape[1]
+
+    # Convert to numpy and process each sample
+    gravity_output = []
+    for b in range(batch_size):
+        # z_sample = depth_map[b, :, :, 0].numpy()
+        z_sample = depth_map[b, :, :, 0]
+        g = FW_Granser(z_sample*10, r0, lambda_, nx, ny, dx, dy, n, const)
+        gravity_output.append(g)
+
+    # Convert back to tensor and add channel dimension
+    gravity_field = tf.convert_to_tensor(np.array(gravity_output), dtype=tf.float32)
+    return tf.expand_dims(gravity_field, -1)#*10**(-5)  # Convert to mGal
