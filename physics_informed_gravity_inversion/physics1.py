@@ -1,7 +1,8 @@
-
 import numpy as np
 from scipy.fft import fft2, ifft2
 import math
+import tensorflow as tf
+from config import DEFAULT_R0, DEFAULT_LAMBDA, DEFAULT_DX, DEFAULT_DY, DEFAULT_N, CONST
 
 def density_contrast(z, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, const=CONST):
     """
@@ -11,7 +12,7 @@ def density_contrast(z, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, const=CONST):
     return (const + r0 * np.exp(-lambda_ * (z / 1000.0))) #* 1000.0
 
 
-def FW_Granser(z, r0=DEFAULT_R0, lambda_=DEFAULT_LAMBDA, nx, ny, dx, dy, n, const=CONST):
+def FW_Granser(z, r0, lambda_, nx, ny, dx, dy, n, const):
     """Forward gravity model using new Δρ(z) formulation"""
     z0_val = (np.max(z) - np.min(z)) / 2.0
     # nx, ny = z.shape[1], z.shape[0]
