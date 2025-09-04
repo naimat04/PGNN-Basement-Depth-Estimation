@@ -5,17 +5,20 @@ from physics import calculate_gravity_field
 class PhysicsLoss(tf.keras.losses.Loss):
     def __init__(self, alpha=0.5, name="physics_loss"):
         super().__init__(name=name)
-        self.alpha = alpha  # weighting between data loss and physics loss
+        self.alpha = alpha
 
     def call(self, y_true, y_pred):
-        # Data loss (MSE between predicted and true depth)
-        data_loss = tf.reduce_mean(tf.square(y_true - y_pred))
+        depth_true, gravity_obs = y_true  # unpack tuple
 
-        # Physics loss (MSE between observed gravity and physics-calculated gravity)
+        # Data loss between true and predicted depth
+        data_loss = tf.reduce_mean(tf.square(depth_true - y_pred))
+
+        # Physics loss between gravity computed from predicted depth and observed gravity
         calculated_gravity = calculate_gravity_field(y_pred)
-        physics_loss = tf.reduce_mean(tf.square(calculated_gravity - y_true))
+        physics_loss = tf.reduce_mean(tf.square(calculated_gravity - gravity_obs))
 
         return self.alpha * data_loss + (1 - self.alpha) * physics_loss
+
 
 def build_xception_physics(input_shape=(101, 101, 1)):
     input_tensor = layers.Input(shape=input_shape)
