@@ -3,20 +3,21 @@ from tensorflow.keras import layers, models
 from physics import calculate_gravity_field
 
 class PhysicsLoss(tf.keras.losses.Loss):
-    def __init__(self, X_obs, alpha=0.5, name="physics_loss"):
+    def __init__(self, alpha=0.5, name="physics_loss"):
         super().__init__(name=name)
-        self.alpha = alpha  # weighting
-        self.X_obs = tf.constant(X_obs, dtype=tf.float32)  # observed gravity field
+        self.alpha = alpha
 
     def call(self, y_true, y_pred):
-        # Data loss (depth mismatch)
-        data_loss = tf.reduce_mean(tf.square(y_true - y_pred))
+        depth_true, gravity_obs = y_true  # unpack tuple
 
-        # Physics loss (predicted depth -> gravity vs observed gravity X_obs)
+        # Data loss between true and predicted depth
+        data_loss = tf.reduce_mean(tf.square(depth_true - y_pred))
+
+        # Physics loss between gravity computed from predicted depth and observed gravity
         calculated_gravity = calculate_gravity_field(y_pred)
-        physics_loss = tf.reduce_mean(tf.square(calculated_gravity - self.X_obs))
+        physics_loss = tf.reduce_mean(tf.square(calculated_gravity - gravity_obs))
 
-        return self.alpha * data_loss + (1.0 - self.alpha) * physics_loss
+        return self.alpha * data_loss + (1 - self.alpha) * physics_loss
 
 def build_xception_physics(input_shape=(101, 101, 1)):
     input_tensor = layers.Input(shape=input_shape)
