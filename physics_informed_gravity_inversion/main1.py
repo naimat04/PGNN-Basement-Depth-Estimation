@@ -24,29 +24,26 @@ if __name__ == "__main__":
     # Build model
     model = build_xception_physics()
 
-    # Compile with physics-informed loss
-
-
-    # Load data
+    # Load data (labels are tuples for PhysicsLoss)
     X_train, X_valid, X_test, y_train, y_valid, y_True = load_data()
-    
-    physics_loss = PhysicsLoss(X_obs=X_train, alpha=0.7)  # 70% data, 30% physics
+
+    # Compile model once with custom physics loss
+    physics_loss = PhysicsLoss(alpha=0.7)
     model.compile(optimizer='adam', loss=physics_loss, metrics=[R2_score])
 
-    # Summary
     model.summary()
-
-    # Recompile for training
-    # model.compile(optimizer='adam', loss='mse', metrics=[R2_score])
 
     # Get callbacks
     callbacks = get_callbacks()
 
     # Train model
     history = model.fit(X_train, y_train,
-              validation_data=[X_valid,y_valid],
-                      epochs=100, batch_size=32,
-                       callbacks=callbacks, verbose=1)
+        validation_data=(X_valid, y_valid),
+        epochs=100,
+        batch_size=32,
+        callbacks=callbacks,
+        verbose=1)
+        
 
     # Save weights
     base_path = '.'
