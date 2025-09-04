@@ -25,14 +25,15 @@ if __name__ == "__main__":
     model = build_xception_physics()
 
     # Compile with physics-informed loss
+
+
+    # Load data
+    X_train, X_valid, X_test, y_train, y_valid, y_True = load_data()
     physics_loss = PhysicsLoss(X_obs=X_train, alpha=0.7)  # 70% data, 30% physics
     model.compile(optimizer='adam', loss=physics_loss, metrics=[R2_score])
 
     # Summary
     model.summary()
-
-    # Load data
-    X_train, X_valid, X_test, y_train, y_valid, y_True = load_data()
 
     # Recompile for training
     # model.compile(optimizer='adam', loss='mse', metrics=[R2_score])
