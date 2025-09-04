@@ -1,6 +1,6 @@
 def load_data():
-    depth = scipy.io.loadmat('gravity_depth_field_21.mat')['depth']
-    gravity = scipy.io.loadmat('gravity_depth_field_21.mat')['gravity']
+    depth=scipy.io.loadmat('exp_data.mat')['depthExp']
+    gravity=scipy.io.loadmat('exp_data.mat')['gravityExp']
     depthN = depth / 10000
 
     # Split input and output as before
