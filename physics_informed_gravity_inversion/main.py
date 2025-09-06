@@ -24,27 +24,29 @@ if __name__ == "__main__":
     # Build model
     model = build_xception_physics()
 
-    # Compile with physics-informed loss
-    physics_loss = PhysicsLoss(alpha=0.7)  # 70% data loss, 30% physics loss
-    model.compile(optimizer='adam', loss=physics_loss)
-
-    # Summary
-    model.summary()
-
-    # Load data
+    # Load data (labels are tuples for PhysicsLoss)
     X_train, X_valid, X_test, y_train, y_valid, y_True = load_data()
 
-    # Recompile for training
-    model.compile(optimizer='adam', loss='mse', metrics=[R2_score])
+    print("X_train shape:", X_train.shape)
+    print("X_valid shape:", X_valid.shape)
+    print("X_test shape:",  X_test.shape)
 
-    # Get callbacks
-    callbacks = get_callbacks()
 
-    # Train model
-    history = model.fit(X_train, y_train,
-              validation_data=[X_valid,y_valid],
-                      epochs=100, batch_size=32,
-                       callbacks=callbacks, verbose=1)
+    # Compile model with physics loss
+    physics_loss = PhysicsLoss(alpha=0.7)
+    model.compile(optimizer='adam', loss=physics_loss, metrics=[R2_score])
+
+    # Train with (X, y) where y is (true_depth, gravity)
+    history = model.fit(
+        X_train,              # input: gravity map
+        y_train,              # labels: (true_depth, gravity)
+        validation_data=(X_valid, y_valid),
+        epochs=100,
+        batch_size=32,
+        callbacks=get_callbacks(),
+        verbose=1
+    )
+        
 
     # Save weights
     base_path = '.'
