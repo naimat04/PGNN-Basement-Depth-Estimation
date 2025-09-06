@@ -2,14 +2,14 @@ import tensorflow as tf
 from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, CSVLogger
 
 def R2_score(actual, pred):
-    # Ensure both tensors have the same shape by squeezing the last dimension if needed
-    # actual = tf.squeeze(actual)  # Remove last dimension if it's 1
-    pred = tf.squeeze(pred, axis=-1)     # Remove last dimension if it's 1
+    # Take only depth channel
+    actual_depth = actual[..., 0]
+    pred_depth   = pred[..., 0]
 
-    # Calculate R2 score
-    ssres = tf.keras.backend.sum(tf.keras.backend.square(actual - pred))
-    sstot = tf.keras.backend.sum(tf.keras.backend.square(actual - tf.keras.backend.mean(actual)))
-    return 1 - (ssres / sstot)
+    ssres = tf.keras.backend.sum(tf.keras.backend.square(actual_depth - pred_depth))
+    sstot = tf.keras.backend.sum(tf.keras.backend.square(actual_depth - tf.keras.backend.mean(actual_depth)))
+    return 1 - ssres/(sstot + tf.keras.backend.epsilon())
+
 
 def get_callbacks():
     base_path= '.'
