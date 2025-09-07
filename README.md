@@ -3,6 +3,7 @@ Gravity Inversion using PINN and CNN
 This repository contains implementations of Physics-Informed Neural Networks (PINN) and Convolutional Neural Networks (CNN) for gravity anomaly to depth inversion, as described in our Computer & Geosciences publication.
 
 Repository Layout
+
 🔹 PINN (Physics-Informed Neural Network)
 
 main.py – Main execution script
