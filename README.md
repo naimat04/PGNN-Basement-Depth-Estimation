@@ -41,4 +41,12 @@ python main.py
 
 ## Data
 - **Synthetic datasets**: Generated using Granser’s forward gravity model for training, validation, and testing.  
-- **Field datasets (optional)**: Can be placed in the `data/field/` directory for real-case evaluation.  
+- **Field datasets (optional)**: Can be placed in the `data/field/` directory for real-case evaluation.
+
+## License
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+
+## Citation
+If you use this code in your research, please cite our publication:
+
+
