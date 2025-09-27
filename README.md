@@ -41,7 +41,7 @@ python main.py
 
 ## Data
 - Synthetic datasets: Generated using Granser’s forward gravity model for training, validation, and testing.
-📥 [Download Dataset](https://zenodo.org/records/17071693/...)
+📥 [Download Dataset](https://zenodo.org/records/17071693?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImI3YTdlZGMyLTM0YjQtNGI4Yi05NDZjLWQ3MjRjMTg0ZGNiOSIsImRhdGEiOnt9LCJyYW5kb20iOiJkYTVhODRjMGQ2NDJmZDIxZjhlMDlkNTcxOGU3NWFjZCJ9.xZ-yZCAJ97JS9WzQFH--qiEE9zEKdhwjagVaN82a0fvHlv61ME18kN7pRD11RaX4pybD_9fTGsVO3T6h4iRrxw))
 
 - **Field datasets (optional)**: Can be placed in the `data/field/` directory for real-case evaluation.
 
