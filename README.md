@@ -40,7 +40,9 @@ python main.py
 - scikit-learn  
 
 ## Data
-- **Synthetic datasets**: Generated using Granser’s forward gravity model for training, validation, and testing.  
+- Synthetic datasets: Generated using Granser’s forward gravity model for training, validation, and testing.
+📥 [Download Dataset](https://zenodo.org/records/17071693/...)
+
 - **Field datasets (optional)**: Can be placed in the `data/field/` directory for real-case evaluation.
 
 ## License
