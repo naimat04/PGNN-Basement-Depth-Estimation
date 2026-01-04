@@ -66,13 +66,6 @@ pip install -r requirements.txt
 │   ├── utils.py          # Training utilities
 │   └── main.py           # Main training and evaluation script
 │
-├── data/                 # Data directory (not in repo, see below)
-│   ├── synthetic/        # Placeholder for synthetic data
-│   └── field/           # Placeholder for field data (optional)
-│
-├── trained_models/      # Saved model weights (can be added via Git LFS or Zenodo)
-├── results/             # Generated plots and output files
-├── tests/               # Unit tests for critical functions
 ├── requirements.txt     # Python dependencies
 └── README.md           # This file
 ```
@@ -86,46 +79,8 @@ The synthetic dataset used in the paper can be downloaded from Zenodo:
 
 **Steps to set up:**
 1. Download the dataset (`synthetic_data.zip`) from the link above
-2. Extract it into the `data/synthetic/` directory. The structure should look like:
-   ```
-   data/synthetic/
-   ├── train/
-   │   ├── gravity_profiles_train.npy
-   │   └── depth_profiles_train.npy
-   ├── val/
-   │   ├── gravity_profiles_val.npy
-   │   └── depth_profiles_val.npy
-   └── test/
-       ├── gravity_profiles_test.npy
-       └── depth_profiles_test.npy
-   ```
-
-### Field Data (Optional)
-To test with your own field data:
-1. Place your gravity data (as a `.npy` or `.txt` file) in `data/field/`
-2. Update the `data_path` in the relevant `config.py` file to point to your data
-3. Ensure your data format matches the expected input shape (see `data_loader.py` for details)
-
-## 🏃 Quick Start: Running a Test for Reviewers
-
-To quickly verify the installation and run a minimal example, follow these steps. This script will load a small sample, train a model for a few epochs, and produce a test plot.
-
-### For the PINN Model:
-```bash
-cd PINN
-# This runs a short training and validation cycle on a small subset of data
-python main.py --mode test --epochs 5
+2. Extract it into the `data/synthetic/` directory.
 ```
-**Expected Output:** The script should start training, print loss values for 5 epochs, and save a sample prediction plot in the `../results/` directory.
-
-### For the CNN Model:
-```bash
-cd CNN
-# This runs a short training and validation cycle on a small subset of data
-python main.py --mode test --epochs 5
-```
-
-> **Note for Reviewers:** The `--mode test` flag uses a pre-defined small dataset embedded in the code/repository to ensure a fast run (2-5 minutes). For full reproduction, please see the next section.
 
 ## 🔧 Full Reproduction of Paper Results
 
@@ -133,7 +88,7 @@ python main.py --mode test --epochs 5
 To train the PINN model from scratch with the full dataset and default hyperparameters:
 ```bash
 cd PINN
-python main.py --mode train
+python main.py
 ```
 Training logs, model checkpoints, and loss plots will be saved (typically in `./logs/` or `../results/`).
 
@@ -141,30 +96,10 @@ Training logs, model checkpoints, and loss plots will be saved (typically in `./
 Similarly, to train the CNN baseline:
 ```bash
 cd CNN
-python main.py --mode train
+python main.py 
+```
 ```
 
-### 3. Evaluate a Pre-trained Model
-To evaluate a saved model on the test set and generate final figures:
-```bash
-# For PINN
-cd PINN
-python main.py --mode evaluate --model_path ../trained_models/pinn_final.h5
-
-# For CNN
-cd CNN
-python main.py --mode evaluate --model_path ../trained_models/cnn_final.h5
-```
-
-## 🧪 Testing
-
-We include unit tests to verify the core functionality. Run them using pytest:
-```bash
-# Test the forward physics model
-python -m pytest tests/test_physics.py -v
-
-# Test the data loading utilities
-python -m pytest tests/test_dataloader.py -v
 ```
 
 ## 🙏 Acknowledgments
