@@ -1,54 +1,134 @@
-# Gravity Inversion using PINN and CNN
+readme:
+  title: "Basement Depth Estimation from Gravity Data using PINNs and CNNs"
+  description: |
+    This repository contains the code used in the paper:
 
-This repository contains implementations of Physics-Informed Neural Networks (PINN) and Convolutional Neural Networks (CNN) for gravity anomaly to depth inversion, as described in our *Computer & Geosciences* publication.
+    **Basement Depth Estimation from Gravity Data Using Physics-Informed Neural Networks and its Comparison with Data-Driven Deep Learning**
 
-## Repository Layout
+    The repository implements:
 
-### 🔹 PINN (Physics-Informed Neural Network)
-- `main.py` – Main execution script  
-- `model.py` – Neural network architecture + physics-informed loss  
-- `physics.py` – Physics-based forward model (Granser’s method)  
-- `data_loader.py` – Data loading and preprocessing  
-- `utils.py` – Training utilities and callbacks  
-- `config.py` – Configuration parameters  
+    • Physics-Informed Neural Network (PINN)  
+    • Data-driven Convolutional Neural Network (CNN)  
+    • Forward gravity model based on Granser’s method  
+    • Synthetic and field data experiments  
 
-### 🔹 CNN (Convolutional Neural Network)
-- `main.py` – Main execution script  
-- `model.py` – CNN architecture  
-- `data_loader.py` – Data loading and preprocessing  
-- `utils.py` – Training utilities and callbacks  
-- `config.py` – Configuration parameters  
+    The goal is to provide fully reproducible results.
 
-## Usage
+  tested_environment: |
+    - Python 3.9 or 3.10
+    - TensorFlow 2.x
+    - Ubuntu / Windows 10 / macOS
 
-### Train the PINN model
-```bash
-cd PINN
-python main.py
-```
+  installation: |
+    ### Create virtual environment
+    python -m venv pinn_env
 
-### Train the CNN model
-```bash
-cd CNN
-python main.py
-```
+    ### Activate environment
+    Linux/macOS:
+      source pinn_env/bin/activate
+    Windows:
+      pinn_env\Scripts\activate.bat
 
-## Dependencies
-- TensorFlow 2.x  
-- NumPy  
-- SciPy  
-- scikit-learn  
+    ### Install dependencies
+    pip install -r requirements.txt
 
-## Data
-- Synthetic datasets: Generated using Granser’s forward gravity model for training, validation, and testing.
-📥 [Download Dataset](https://zenodo.org/records/17071693?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImI3YTdlZGMyLTM0YjQtNGI4Yi05NDZjLWQ3MjRjMTg0ZGNiOSIsImRhdGEiOnt9LCJyYW5kb20iOiJkYTVhODRjMGQ2NDJmZDIxZjhlMDlkNTcxOGU3NWFjZCJ9.xZ-yZCAJ97JS9WzQFH--qiEE9zEKdhwjagVaN82a0fvHlv61ME18kN7pRD11RaX4pybD_9fTGsVO3T6h4iRrxw)
+  repository_structure: |
+    PINN/
+        main.py
+        model.py
+        physics.py
+        data_loader.py
+        utils.py
+        config.py
 
-- **Field datasets (optional)**: Can be placed in the `data/field/` directory for real-case evaluation.
+    CNN/
+        main.py
+        model.py
+        data_loader.py
+        utils.py
+        config.py
 
-## License
-This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+    data/
+        synthetic/
+        field/
 
-## Citation
-If you use this code in your research, please cite our publication:
+    results/
+        figures/
+        models/
 
+  data_information: |
+    ### Synthetic data
+    Synthetic gravity anomalies and basement depths are generated using Granser’s forward model.
 
+    Download dataset (Zenodo link in paper) and place inside:
+
+    data/synthetic/
+
+    ### Field data (optional)
+    Place field data in:
+
+    data/field/
+
+    Supported formats:
+    - CSV: x, y, gravity_anomaly
+    - Numpy .npy arrays
+
+  quick_start: |
+    ### Run Physics-Informed Neural Network (PINN)
+
+    cd PINN
+    python main.py
+
+    ### Run Convolutional Neural Network (CNN)
+
+    cd CNN
+    python main.py
+
+  reproduction_steps: |
+    ### Step 1 – Generate synthetic data
+    python data/generate_synthetic.py
+
+    ### Step 2 – Train PINN
+    cd PINN
+    python main.py --config config.py
+
+    ### Step 3 – Train CNN
+    cd CNN
+    python main.py --config config.py
+
+    ### Step 4 – Evaluate and compare
+    python evaluate.py
+
+    Results saved in:
+    results/models/
+    results/figures/
+
+  outputs: |
+    The example scripts will:
+
+    ✔ train PINN and CNN models  
+    ✔ predict basement depth  
+    ✔ compare predicted vs true depth  
+    ✔ compute metrics (MSE, MAE, R²)  
+    ✔ generate plots  
+
+  code_commenting_policy: |
+    All Python files include English comments explaining:
+
+    - loss function terms
+    - physics-informed residuals
+    - applied boundary conditions
+    - data normalization
+    - neural network architectures
+
+  license: |
+    MIT License. See LICENSE file.
+
+  citation: |
+    If you use this code, please cite the associated paper.
+
+  contact: |
+    For questions contact:
+    Your Name
+    Your Institution
+    Your Email
