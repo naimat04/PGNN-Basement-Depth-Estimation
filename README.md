@@ -23,8 +23,8 @@ The primary goal is to evaluate the potential of physics-constrained learning ag
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-cd YOUR_REPOSITORY
+git clone https://github.com/naimat04/naimat04-PINN-Basement-Depth-Estimation.git
+cd naimat04-PINN-Basement-Depth-Estimation
 ```
 
 ### 2. Create a Python Environment (Recommended)
@@ -167,22 +167,10 @@ python -m pytest tests/test_physics.py -v
 python -m pytest tests/test_dataloader.py -v
 ```
 
-## 📝 Citation
-If you use this code in your research, please cite our paper:
-```bibtex
-@article{yourcitation2024,
-  title={Basement Depth Estimation from Gravity Data Using Physics-Informed Neural Networks and its Comparison with Data Driven Deep Learning},
-  author={Your Name and Co-authors},
-  journal={Computers \& Geosciences},
-  year={2024},
-  publisher={Elsevier}
-}
-```
-
 ## 🙏 Acknowledgments
 * We thank the developers of TensorFlow and the core PINN research community
-* This work was supported by [Your Funding Agency/University]
-* The forward modeling code is based on Granser's method [cite original paper]
+* This work was supported by Indian Institute of Technology Bombay 
+* The forward modeling code is based on Granser's method (Granser, 1987)
 
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -196,18 +184,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    mkdir -p data/synthetic data/field results trained_models
    ```
 
-2. **Data Size:** The full synthetic dataset is approximately 1.2 GB. For quick testing, use the `--mode test` flag which uses a much smaller embedded dataset.
-
-3. **Hardware Requirements:** 
-   - Minimum: 8GB RAM, GPU not required but recommended
+2. **Hardware Requirements:** 
    - Recommended: 16GB RAM, NVIDIA GPU with 4GB+ VRAM for faster training
 
-4. **Troubleshooting:** If you encounter any issues, please check:
+3. **Troubleshooting:** If you encounter any issues, please check:
    - All dependencies are installed correctly (`pip install -r requirements.txt`)
    - The data is placed in the correct directory structure
    - You have sufficient disk space for saving models and results
 
 ## 🔗 Related Resources
-* [Paper on arXiv]() - Link to your preprint
-* [Granser's Original Paper]() - Reference for the forward model
-* [Physics-Informed Neural Networks Review]() - Background on PINNs
+* Granser, H. (1987). THREE‐DIMENSIONAL INTERPRETATION OF GRAVITY DATA FROM SEDIMENTARY BASINS USING AN EXPONENTIAL DENSITY‐DEPTH FUNCTION*. Geophysical Prospecting, 35(9), 1030–1041. https://doi.org/10.1111/j.1365-2478.1987.tb00858.x
