@@ -79,7 +79,7 @@ The synthetic dataset used in the paper can be downloaded from Zenodo:
 
 **Steps to set up:**
 1. Download the dataset (`synthetic_data.zip`) from the link above
-2. Extract it into the `data/synthetic/` directory.
+2. Extract it into the `not physics informed` or `physics_informed_gravity_inversion` directory.
 ```
 
 ## 🔧 Full Reproduction of Paper Results
@@ -114,10 +114,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## ⚠️ Important Notes for Users
 
-1. **First-time Setup:** After cloning, ensure you create the required directories:
-   ```bash
-   mkdir -p data/synthetic data/field results trained_models
-   ```
+1. **First-time Setup:** After cloning, ensure you place data in correct directory
 
 2. **Hardware Requirements:** 
    - Recommended: 16GB RAM, NVIDIA GPU with 4GB+ VRAM for faster training
