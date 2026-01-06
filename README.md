@@ -87,7 +87,7 @@ The synthetic dataset used in the paper can be downloaded from Zenodo:
 ### 1. Train the PINN Model
 To train the PINN model from scratch with the full dataset and default hyperparameters:
 ```bash
-cd PINN
+cd physics_informed_gravity_inversion
 python main.py
 ```
 Training logs, model checkpoints, and loss plots will be saved (typically in `./logs/` or `../results/`).
@@ -95,7 +95,7 @@ Training logs, model checkpoints, and loss plots will be saved (typically in `./
 ### 2. Train the CNN Model
 Similarly, to train the CNN baseline:
 ```bash
-cd CNN
+cd not_physics_informed
 python main.py 
 ```
 
