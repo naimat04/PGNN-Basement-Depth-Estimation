@@ -2,13 +2,13 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This repository contains the official implementation for the paper **"Basement Depth Estimation from Gravity Data Using Physics-Informed Neural Networks and its Comparison with Data-Driven Deep Learning"** (submitted to *Computers & Geosciences*). It provides code for comparing **Physics-Informed Neural Networks (PINN)** and **Data-Driven Convolutional Neural Networks (CNN)** for inverting gravity anomalies to estimate basement topography.
+This repository contains the official implementation for the paper **"Basement Depth Estimation from Gravity Data Using Physics-Informed Neural Networks and its Comparison with Data-Driven Deep Learning"** (submitted to *Computers & Geosciences*). It provides code for comparing **Physics-Guided Neural Network (PGNN)** and **Data-Driven Convolutional Neural Networks (CNN)** for inverting gravity anomalies to estimate basement topography.
 
 ## 📖 Description
 
 Estimating basement depth from gravity data is a classic geophysical inverse problem. This work implements and compares two deep learning approaches:
 
-1. **Physics-Informed Neural Network (PINN):** A neural network trained with a hybrid loss function that combines data misfit with the governing physical equations (using Granser's forward model).
+1. **Physics-Guided Neural Network (PGNN):** A neural network trained with a hybrid loss function that combines data misfit with the governing physical equations (using Granser's forward model).
 2. **Convolutional Neural Network (CNN):** A purely data-driven network trained on synthetic gravity-depth pairs.
 
 The primary goal is to evaluate the potential of physics-constrained learning against traditional supervised learning for this geophysical task.
@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 ```
 .
-├── PINN/                  # Physics-Informed Neural Network implementation
+├── PGNN/                  # Physics-Informed Neural Network implementation
 │   ├── config.py         # Configuration parameters (model, training, physics)
 │   ├── model.py          # Neural network architecture & PINN loss definition
 │   ├── physics.py        # Granser's forward model & physics computation
@@ -79,15 +79,15 @@ The synthetic dataset used in the paper can be downloaded from Zenodo:
 
 **Steps to set up:**
 1. Download the dataset (`synthetic_data.zip`) from the link above
-2. Extract it into the `not physics informed` or `physics_informed_gravity_inversion` directory.
+2. Extract it into the `CNN` or `PGNN` directory.
 ```
 
 ## 🔧 Full Reproduction of Paper Results
 
-### 1. Train the PINN Model
-To train the PINN model from scratch with the full dataset and default hyperparameters:
+### 1. Train the PGNN Model
+To train the PGNN model from scratch with the full dataset and default hyperparameters:
 ```bash
-cd physics_informed_gravity_inversion
+cd PGNN
 python main.py
 ```
 Training logs, model checkpoints, and loss plots will be saved (typically in `./logs/` or `../results/`).
