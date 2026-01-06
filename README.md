@@ -98,9 +98,6 @@ Similarly, to train the CNN baseline:
 cd CNN
 python main.py 
 ```
-```
-
-```
 
 ## 🙏 Acknowledgments
 * We thank the developers of TensorFlow and the core PINN research community
