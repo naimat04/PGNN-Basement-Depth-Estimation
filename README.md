@@ -1,8 +1,8 @@
-# Basement Depth Estimation from Gravity Data using PINNs and CNNs
+# Basement Depth Estimation from Gravity Data using PGNNs and CNNs
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This repository contains the official implementation for the paper **"Basement Depth Estimation from Gravity Data Using Physics-Informed Neural Networks and its Comparison with Data-Driven Deep Learning"** (submitted to *Computers & Geosciences*). It provides code for comparing **Physics-Guided Neural Network (PGNN)** and **Data-Driven Convolutional Neural Networks (CNN)** for inverting gravity anomalies to estimate basement topography.
+This repository contains the official implementation for the paper **"Basement Depth Estimation from Gravity Data Using Physics-Guided Neural Networks and its Comparison with Data-Driven Deep Learning"** (submitted to *Computers & Geosciences*). It provides code for comparing **Physics-Guided Neural Network (PGNN)** and **Data-Driven Convolutional Neural Networks (CNN)** for inverting gravity anomalies to estimate basement topography.
 
 ## 📖 Description
 
@@ -14,7 +14,7 @@ Estimating basement depth from gravity data is a classic geophysical inverse pro
 The primary goal is to evaluate the potential of physics-constrained learning against traditional supervised learning for this geophysical task.
 
 **Key Features:**
-* Implementation of a PINN with a custom physics loss based on Granser's method
+* Implementation of a PGNN with a custom physics loss based on Granser's method
 * Implementation of a comparative CNN baseline
 * Scripts for training, validation, and testing on both synthetic and field data
 * Utilities for visualizing results and metrics
@@ -23,8 +23,8 @@ The primary goal is to evaluate the potential of physics-constrained learning ag
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/naimat04/naimat04-PINN-Basement-Depth-Estimation.git
-cd naimat04-PINN-Basement-Depth-Estimation
+git clone https://github.com/naimat04/naimat04-PGNN-Basement-Depth-Estimation.git
+cd naimat04-PGNN-Basement-Depth-Estimation
 ```
 
 ### 2. Create a Python Environment (Recommended)
@@ -51,9 +51,9 @@ pip install -r requirements.txt
 
 ```
 .
-├── PGNN/                  # Physics-Informed Neural Network implementation
+├── PGNN/                  # Physics-Guided Neural Network implementation
 │   ├── config.py         # Configuration parameters (model, training, physics)
-│   ├── model.py          # Neural network architecture & PINN loss definition
+│   ├── model.py          # Neural network architecture & PGNN loss definition
 │   ├── physics.py        # Granser's forward model & physics computation
 │   ├── data_loader.py    # Synthetic/field data loading and preprocessing
 │   ├── utils.py          # Training callbacks, visualization, metrics
@@ -95,12 +95,12 @@ Training logs, model checkpoints, and loss plots will be saved (typically in `./
 ### 2. Train the CNN Model
 Similarly, to train the CNN baseline:
 ```bash
-cd not_physics_informed
+cd not_physics_Guided
 python main.py 
 ```
 
 ## 🙏 Acknowledgments
-* We thank the developers of TensorFlow and the core PINN research community
+* We thank the developers of TensorFlow and the core PGNN research community
 * This work was supported by Indian Institute of Technology Bombay 
 * The forward modeling code is based on Granser's method (Granser, 1987)
 
