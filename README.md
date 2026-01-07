@@ -95,7 +95,7 @@ Training logs, model checkpoints, and loss plots will be saved (typically in `./
 ### 2. Train the CNN Model
 Similarly, to train the CNN baseline:
 ```bash
-cd not_physics_Guided
+cd CNN
 python main.py 
 ```
 
