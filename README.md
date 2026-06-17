@@ -123,3 +123,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🔗 Related Resources
 * Granser, H. (1987). THREE‐DIMENSIONAL INTERPRETATION OF GRAVITY DATA FROM SEDIMENTARY BASINS USING AN EXPONENTIAL DENSITY‐DEPTH FUNCTION*. Geophysical Prospecting, 35(9), 1030–1041. https://doi.org/10.1111/j.1365-2478.1987.tb00858.x
+
+## 📚 Citation
+
+If you use this repository in your research, please cite:
+
+Sarkar, K., Nimatullah, Singh, A., & Singh, U. K. (2026). *Basement depth estimation from gravity data using Physics-Guided Neural Networks and its comparison with data driven deep learning*. Computers & Geosciences, 214, 106200. https://doi.org/10.1016/j.cageo.2026.106200
+
+### BibTeX
+
+```bibtex
+@article{sarkar2026basement,
+  title={Basement depth estimation from gravity data using Physics-Guided Neural Networks and its comparison with data driven deep learning},
+  author={Sarkar, Kuldeep and Nimatullah and Singh, Anand and Singh, Upendra K.},
+  journal={Computers \& Geosciences},
+  volume={214},
+  pages={106200},
+  year={2026},
+  doi={10.1016/j.cageo.2026.106200}
+}
+```
+
